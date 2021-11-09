@@ -1,5 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
+
 function App() {
-  return <div className="App">13278787</div>
+  return (
+    <BrowserRouter>
+      {/* <NavBar /> */}
+      <AppRouter />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
