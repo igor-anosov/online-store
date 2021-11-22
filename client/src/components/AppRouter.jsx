@@ -5,9 +5,8 @@ import { authRoutes, publicRoutes } from '../routes';
 import { SHOP_ROUTE } from '../utils/consts';
 
 function AppRouter() {
-  const { user, device } = useContext(Context);
+  const { user } = useContext(Context);
 
-  console.log('user', device);
   return (
     <Routes>
       {user.isAuth &&
