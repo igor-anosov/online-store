@@ -8,8 +8,19 @@ export default class DeviceStore {
       { id: 3, name: 'Combines' },
       { id: 4, name: 'Smartphones' },
     ];
-    this._brands = [];
-    this._devices = [];
+    this._brands = [
+      { id: 1, name: 'Samsung' },
+      { id: 2, name: 'Apple' },
+    ];
+    this._devices = [
+      {
+        id: 1,
+        name: 'Samsung',
+        price: 25000,
+        rating: 5,
+        img: '/',
+      },
+    ];
     this._selectedType = {};
     this._selectedBrand = {};
     this._page = 1;
