@@ -18,7 +18,7 @@ export default class DeviceStore {
         name: 'Samsung',
         price: 25000,
         rating: 5,
-        img: '/',
+        img: 'https://picsum.photos/150',
       },
     ];
     this._selectedType = {};
