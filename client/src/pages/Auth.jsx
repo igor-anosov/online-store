@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
-// import {login, registration} from "../http/userAPI";
+import { login, registration } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 
@@ -19,18 +19,19 @@ const Auth = observer(() => {
 
   const click = async () => {
     try {
-      // let data;
+      let data;
       if (isLogin) {
-        // data = await login(email, password);
+        data = await login(email, password);
       } else {
-        // data = await registration(email, password);
+        data = await registration(email, password);
       }
-      // console.log('---data', data);
+      console.log('---data', data);
+
       user.setUser(user);
       user.setIsAuth(true);
       navigate(SHOP_ROUTE);
     } catch (e) {
-      alert(e.response.data.message);
+      alert(e?.response?.data?.message || e?.message);
     }
   };
 
