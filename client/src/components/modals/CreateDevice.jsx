@@ -1,15 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Modal, Dropdown, Form, Button, Row, Col } from 'react-bootstrap';
 import { Context } from '../../index';
-// import {createType} from "../../http/deviceAPI";
+import {
+  createDevice,
+  createType,
+  fetchBrands,
+  fetchDevices,
+  fetchTypes,
+} from '../../http/deviceAPI';
 import { observer } from 'mobx-react-lite';
 
-const CreateType = ({ show, onHide }) => {
+const CreateType = observer(({ show, onHide }) => {
   const { device } = useContext(Context);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
+  const [brand, setBrand] = useState(null);
+  const [type, setType] = useState(null);
   const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    fetchTypes().then((data) => device.setTypes(data));
+    fetchBrands().then((data) => device.setBrands(data));
+  }, []);
 
   const addInfo = () => {
     setInfo([...info, { title: '', description: '', number: Date.now() }]);
@@ -35,7 +48,7 @@ const CreateType = ({ show, onHide }) => {
     formData.append('brandId', device.selectedBrand.id);
     formData.append('typeId', device.selectedType.id);
     formData.append('info', JSON.stringify(info));
-    // createDevice(formData).then(data => onHide())
+    createDevice(formData).then((data) => onHide());
   };
 
   return (
@@ -135,6 +148,6 @@ const CreateType = ({ show, onHide }) => {
       </Modal.Footer>
     </Modal>
   );
-};
+});
 
 export default CreateType;

@@ -17,7 +17,7 @@ function App() {
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [user]);
 
   if (loading) {
     return <Spinner animation={'grow'} />;
